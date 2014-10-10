@@ -1,0 +1,38 @@
+/*
+Digitalkomix Plugin CSS
+Style overrides for tables used in the plugin
+-------------------------------------------------------------- */
+
+.digitalkomix_table table {
+	border-top: 5px solid black;
+	border-bottom: 5px solid black;
+	border-right: 5px solid black;
+	border-left: 5px solid black; 
+	color: black; 
+	font-family: Comic Sans MS; 
+	font-size: 20px; 
+	font-variant: small-caps; 
+	background-size: 100% 100%; 
+	border-collapse: separate; 
+	border-spacing: 10px
+}
+
+.digitalkomix_table a:link {
+	text-decoration: none
+}
+
+.digitalkomix_table caption, td {
+	text-align: center
+}
+
+.digitalkomix_table td {
+	padding: 10px; 
+	border-top: 5px solid black;
+	border-bottom: 5px solid black;
+	border-right: 5px solid black;
+	border-left: 5px solid black;   
+	border-radius: 20px; 
+	background-color: white;  
+	vertical-align: middle; 
+	empty-cells: hide
+} 
