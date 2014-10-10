@@ -34,13 +34,13 @@ General attributes
 *	cols='Number of columns' : how many columns of balloons you have on the image, please note that you may not have more than 
 	12 balloons on the image.
 *	caption='Text of the caption of the image' : text that will appear above the image, if you want it to appear on the bottom 
-	you have to add “&lt;bottom&gt;” at the end of the text.
+	you have to add "&lt;bottom&gt;" at the end of the text.
 *	text_1='Text in the first balloon' : first balloon is in the top left corner of the image, last balloon is in the bottom right corner.
 *	text_nth='Text in the nth balloon' : position of the nth balloon depends on how many rows and columns you set.
 
-Please note that if you don’t write text in a balloon, the balloon will not be displayed. 
-If you want a balloon to span more than a cell, you have to add “&lt;span r,c&gt;" at the end of the text, 
-where “r” stands for rowspan and “c” stands for columnspan.
+Please note that if you don't write text in a balloon, the balloon will not be displayed. 
+If you want a balloon to span more than a cell, you have to add "&lt;span r,c&gt;" at the end of the text, 
+where "r" stands for rowspan and "c" stands for columnspan.
 
 == Installation ==
 
