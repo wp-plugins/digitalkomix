@@ -3,7 +3,7 @@
 Plugin Name: digitalkOmiX
 Plugin URI: http://www.andywar.net/wordpress-plugins/digitalkomix-plugin
 Description: Creates a shortcode that displays balloons with text on an image.
-Version: 1.0
+Version: 1.1
 Author: Andy War
 Author URI: http://www.andywar.net
 License: GPLv2
@@ -118,10 +118,14 @@ function digitalkomix_shortcode($atts, $content=null){
 	
 	$text = array($text_1, $text_2, $text_3, $text_4, $text_5, $text_6, $text_7, $text_8, $text_9, $text_10, $text_11, $text_12);//populate text string
 	
+	$grid_on = 1;//we expect grid to be desplayed
 	$i = 0;
 	for ($r = 0 ; $r < $rows ; $r++){//populate text and percent array
 		for ($c = 0 ; $c < $cols ; $c++){
 			$text_array [$r] [$c] = $text [$i];
+			if ($text [$i] !== ''){
+				$grid_on = 0;//grid is off
+			}
 			$percent_array [$r] [$c] = 'style="width: '.$hor.'%; height: '.$vert.'%;"';
 			$i++;
 		}
@@ -129,44 +133,60 @@ function digitalkomix_shortcode($atts, $content=null){
 	
 	$table = '';//initialize table
 	
-	for ($r = 0 ; $r < $rows ; $r++){//populate table
-		$table = $table.'<tr>';
-		for ($c = 0 ; $c < $cols ; $c++){
-			$text_array [$r] [$c] = str_replace('&lt;', '<',$text_array [$r] [$c]);//if sanitized
-			$text_array [$r] [$c] = str_replace('&gt;', '>',$text_array [$r] [$c]);
-			if (strpos($text_array [$r] [$c] , '<span ')){//check for cellspans
-				$span_arg=strstr($text_array [$r] [$c], '<span ');
-				$text_array [$r] [$c]=strstr($text_array [$r] [$c], '<span ', true);//deletes span argument from text
-				$span_arg=str_replace('<span ', '', $span_arg);
-				$rowspan=strstr($span_arg, ',', true);//strips rowspan
-				$span_arg=strstr($span_arg, ',');
-				$span_arg=str_replace(',', '', $span_arg);
-				$colspan=strstr($span_arg, '>', true);//strips colspan
-				$percent_array [$r] [$c] = 'style="width: '.$hor*$colspan.'%; height: '.$vert*$rowspan.'%;"';//corrects percent values for cell
-				$cellspan_array [$r] [$c] = '';
-				if ($rowspan > 1){
-					$cellspan_array [$r] [$c] = ' rowspan="'.$rowspan.'"';//set rowspan for cell
-				}
-				if ($colspan > 1){
-					$cellspan_array [$r] [$c] = $cellspan_array [$r] [$c].' colspan="'.$colspan.'"';//set colspan for cell
-				}
-				for ($rspan = 0 ; $rspan < $rowspan ; $rspan++){//kill text in spanned cells
-					for ($cspan = 0 ; $cspan < $colspan ; $cspan++){
-						if ($rspan+$cspan !== 0){//don't kill first cell!
-							$text_array [$r+$rspan] [$c+$cspan] = 'Skip Cell';
+	switch ($grid_on){
+		case '0'://grid is off
+			for ($r = 0 ; $r < $rows ; $r++){//populate table
+				$table = $table.'<tr>';
+				for ($c = 0 ; $c < $cols ; $c++){
+					$text_array [$r] [$c] = str_replace('&lt;', '<',$text_array [$r] [$c]);//if sanitized
+					$text_array [$r] [$c] = str_replace('&gt;', '>',$text_array [$r] [$c]);
+					if (strpos($text_array [$r] [$c] , '<span ')){//check for cellspans
+						$span_arg=strstr($text_array [$r] [$c], '<span ');
+						$text_array [$r] [$c]=strstr($text_array [$r] [$c], '<span ', true);//deletes span argument from text
+						$span_arg=str_replace('<span ', '', $span_arg);
+						$rowspan=strstr($span_arg, ',', true);//strips rowspan
+						$span_arg=strstr($span_arg, ',');
+						$span_arg=str_replace(',', '', $span_arg);
+						$colspan=strstr($span_arg, '>', true);//strips colspan
+						$percent_array [$r] [$c] = 'style="width: '.$hor*$colspan.'%; height: '.$vert*$rowspan.'%;"';//corrects percent values for cell
+						$cellspan_array [$r] [$c] = '';
+						if ($rowspan > 1){
+							$cellspan_array [$r] [$c] = ' rowspan="'.$rowspan.'"';//set rowspan for cell
+						}
+						if ($colspan > 1){
+							$cellspan_array [$r] [$c] = $cellspan_array [$r] [$c].' colspan="'.$colspan.'"';//set colspan for cell
+						}
+						for ($rspan = 0 ; $rspan < $rowspan ; $rspan++){//kill text in spanned cells
+							for ($cspan = 0 ; $cspan < $colspan ; $cspan++){
+								if ($rspan+$cspan !== 0){//don't kill first cell!
+									$text_array [$r+$rspan] [$c+$cspan] = 'Skip Cell';
+								}
+							}
 						}
 					}
+					if ($text_array [$r] [$c] !== 'Skip Cell'){//if cellspan, deletes cell
+					$table = $table.'<td '.$cellspan_array [$r] [$c].' '.$percent_array [$r] [$c].'>'.$text_array [$r] [$c].'</td>';
+					}
 				}
+				$table = $table.'</tr>';
 			}
-			if ($text_array [$r] [$c] !== 'Skip Cell'){//if cellspan, deletes cell
-			$table = $table.'<td '.$cellspan_array [$r] [$c].' '.$percent_array [$r] [$c].'>'.$text_array [$r] [$c].'</td>';
+			$css_class_var = 'table';
+		break;
+		case '1'://grid is on
+			$i = 1;
+			for ($r = 0 ; $r < $rows ; $r++){//populate table
+				$table = $table.'<tr>';
+				for ($c = 0 ; $c < $cols ; $c++){
+					$table = $table.'<td '.$percent_array [$r] [$c].'>'.$i.'</td>';
+					$i++;
+				}
+				$table = $table.'</tr>';	
 			}
-		}
-		$table = $table.'</tr>';
+			$css_class_var = 'grid';
 	}
 	
 	//output of comic frame
-	return'<div class="digitalkomix_table">
+	return'<div class="digitalkomix_'.$css_class_var.'">
 			<a href="'.$image_link.'" title="Click to view original image.">
 			<table style="width: '.$width.'px; height:'.$height.'px; background-image: url('.$image_url.')">
 			<caption'.$cap_b.$caption.'</caption>'
