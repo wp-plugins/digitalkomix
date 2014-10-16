@@ -68,7 +68,8 @@ It has been tested on twentythirteen and twentyfourteen.
 == Changelog ==
 
 = 1.1 =
-* Grid function added.
+* Grid function added: if no text is written, on post/page preview a grid is overlayed on the image, with numbered text areas. This may be 
+useful to choose appropriate number of rows x cols.
 
 = 1.0 =
 * First release.
@@ -76,8 +77,7 @@ It has been tested on twentythirteen and twentyfourteen.
 == Upgrade Notice ==
 
 = 1.1 =
-* Grid function added: if no text is written, on post/page preview a grid is overlayed on the image, with numbered text areas. This may be 
-useful to choose appropriate number of rows x cols.
+* Grid function added.
 
 = 1.0 =
 No upgrades available.
