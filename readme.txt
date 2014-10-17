@@ -4,7 +4,7 @@ Donate link: http://www.andywar.net/wordpress-plugins/donate
 Tags: image, text, comics, balloons, shortcode
 Requires at least: 4.0
 Tested up to: 4.0
-Stable tag: 1.1
+Stable tag: 1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,12 +14,22 @@ This plugin adds balloons to traditional comic frames. Balloons become part of t
 
 This plugin adds balloons to traditional comic frames. Balloons become part of the content of the post, and can be translated. 
 Image becomes an HTML &lt;table&gt; background, while balloons are cells of that &lt;table&gt;.
-At this stage plugin works through a shortcode, that can be self-closing: [digkom]
+At this stage plugin works through a shortcode, that can be enclosing: [digkom]&lt;IMAGE&gt;[/digkom]
 
-or enclosing: [digkom]&lt;IMAGE&gt;[/digkom]
+or self-closing: [digkom]
 
-In the self-closing shortcode you will have to add image location and size, while the enclosing shortcode handles the image added
-directly from the Media Library. Below is a list of the shortcode attributes:
+Enclosing shortcode handles the image directly added from the Media Library, while in the self-closing shortcode 
+you will have to add image location and size. Below is a list of the shortcode attributes:
+
+General attributes
+
+*	rows='Number of rows' : how many rows of balloons you have on the image (by default set to 4).
+*	cols='Number of columns' : how many columns of balloons you have on the image (by default set to 3).
+*	caption='Text of the caption of the image' : text that will appear above the image, if you want it to appear on the bottom 
+	you have to add "&lt;bottom&gt;" at the end of the text.
+*	text_1='Text in the first balloon &lt;grid&gt;' : first balloon starting from the top left corner of the image. "&lt;grid&gt;" sets
+	the position and dimension of the balloon (see below).
+*	text_nth='Text in the nth balloon &lt;grid&gt;' : No more than 12 balloons may be added.
 
 Attributes for self-closing shortcode only
 
@@ -28,21 +38,15 @@ Attributes for self-closing shortcode only
 *	width='Width of the image in pixels'
 *	height='Height of the image in pixels'
 
-General attributes
-
-*	rows='Number of rows' : how many rows of balloons you have on the image.
-*	cols='Number of columns' : how many columns of balloons you have on the image, please note that you may not have more than 
-	12 balloons on the image.
-*	caption='Text of the caption of the image' : text that will appear above the image, if you want it to appear on the bottom 
-	you have to add "&lt;bottom&gt;" at the end of the text.
-*	text_1='Text in the first balloon' : first balloon is in the top left corner of the image, last balloon is in the bottom right corner.
-*	text_nth='Text in the nth balloon' : position of the nth balloon depends on how many rows and columns you set.
-
 Please note that if you don't write text in a balloon, the balloon will not be displayed.
-If no text is written at all and you preview (or publish) the post, the image will appear with cell grid on it, with numbered text areas. 
-This may be useful to tune up the row and column number.
-If you want a balloon to span more than a cell, you have to add "&lt;span r,c&gt;" at the end of the text, 
-where "r" stands for rowspan and "c" stands for columnspan.
+If no text is written at all and you preview (or publish) the post, the image will appear with an overlying grid of numbered text areas. 
+This may be useful to determine row / column number, position and size of balloons.
+To position and size balloons, add "&lt;grid 1st,2nd&gt;" at the end of the text_nth, where "1st" is the number of the top-left grid
+element (text area) contained by the balloon, while "2nd" is the bottom-right one (same as "1st" if only one text area is used).
+Balloon can contain 1 to all text areas.
+
+In alternative to "&lt;grid&gt;", you may add "&lt;span r,c&gt;" at the end of the text_nth, 
+where "r" stands for rowspan and "c" stands for columnspan. &lt;span&gt;, however, restricts table size to max 12 cells.
 
 == Installation ==
 
@@ -62,10 +66,14 @@ It has been tested on twentythirteen and twentyfourteen.
 
 == Screenshots ==
 
-1. This is how the balloon appears on the frame.
-2. This is how the grid appears when no text is added.
+1. This is how the overlying grid appears on the frame.
+2. Choose top-left and bottom-right corner of the balloon. 
+3. This is how the balloon appears once the text is added.
 
 == Changelog ==
+
+= 1.2 =
+* Grid mode added: no limits to table size, balloon is positioned and sized defining the cells of it's top-left and bottom-right corner.
 
 = 1.1 =
 * Grid function added: if no text is written, on post/page preview a grid is overlayed on the image, with numbered text areas. This may be 
@@ -76,8 +84,11 @@ useful to choose appropriate number of rows x cols.
 
 == Upgrade Notice ==
 
+= 1.2 =
+* Grid mode added.
+
 = 1.1 =
 * Grid function added.
 
 = 1.0 =
-No upgrades available.
+* No upgrades available.
