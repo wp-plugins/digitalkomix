@@ -215,9 +215,14 @@ function digitalkomix_shortcode($atts, $content=null){
 					$text [$i] = str_replace($grid_arg, '', $text [$i]);//deletes grid argument from text
 					$grid_arg = str_replace('<grid ', '', $grid_arg);
 					$grid_arg_2 = strstr($grid_arg, ',');
-					$grid_arg_1 = str_replace($grid_arg_2, '', $grid_arg);//strips first cell
-					$grid_arg_2 = str_replace(',', '', $grid_arg_2);
-					$grid_arg_2 = str_replace('>', '', $grid_arg_2);//strips second cell
+					if ($grid_arg_2 == ''){//is there just one cell?
+						$grid_arg_1 = str_replace('>', '', $grid_arg);//strips first cell
+						$grid_arg_2 = $grid_arg_1;//strips second cell
+					} else {
+						$grid_arg_1 = str_replace($grid_arg_2, '', $grid_arg);//strips first cell
+						$grid_arg_2 = str_replace(',', '', $grid_arg_2);
+						$grid_arg_2 = str_replace('>', '', $grid_arg_2);//strips second cell
+					}
 					$grid_arg_1r = $coord_r [$grid_arg_1];//row and col coordinate for grid arguments
 					$grid_arg_1c = $coord_c [$grid_arg_1];
 					$grid_arg_2r = $coord_r [$grid_arg_2];
