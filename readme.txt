@@ -39,14 +39,16 @@ Attributes for self-closing shortcode only
 *	height='Height of the image in pixels'
 
 Please note that if you don't write text in a balloon, the balloon will not be displayed.
-If no text is written at all and you preview (or publish) the post, the image will appear with an overlying grid of numbered text areas. 
+If no text is written at all and you preview (or publish) the post, the image will appear with an overlying grid of numbered cells. 
 This may be useful to determine row / column number, position and size of balloons.
 To position and size balloons, add "&lt;grid 1st,2nd&gt;" at the end of the text_nth, where "1st" is the number of the top-left grid
-element (text area) contained by the balloon, while "2nd" is the bottom-right one (same as "1st" if only one text area is used).
+cell contained by the balloon, while "2nd" is the bottom-right one (use only "1st" if one grid cell is used).
 Balloon can contain 1 to all text areas.
 
 In alternative to "&lt;grid&gt;", you may add "&lt;span r,c&gt;" at the end of the text_nth, 
 where "r" stands for rowspan and "c" stands for columnspan. &lt;span&gt;, however, restricts table size to max 12 cells.
+
+Additional instructions may be found here: http://www.andywar.net/wordpress-plugins/digitalkomix-plugin
 
 == Installation ==
 
