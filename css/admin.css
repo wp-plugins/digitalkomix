@@ -1,0 +1,48 @@
+/*
+Digitalkomix Plugin CSS
+Style overrides for tables used in the admin pages
+PREVIEW-------------------------------------------------------------- */
+
+.digitalkomix_preview table {	
+	border-top: 3px solid black;	
+	border-bottom: 3px solid black;	
+	border-right: 3px solid black;	
+	border-left: 3px solid black; 	
+	color: black; 	font-family: Comic Sans MS; 	
+	font-size: 12px; 	
+	font-variant: small-caps; 	
+	background-size: 100% 100%; 	
+	border-collapse: separate; 	
+	border-spacing: 5px}
+
+.digitalkomix_preview caption{	
+	text-align: center}
+
+.digitalkomix_preview td {	
+	padding: 5px; 	
+	border-top: 3px solid black;	
+	border-bottom: 3px solid black;	
+	border-right: 3px solid black;	
+	border-left: 3px solid black;   	
+	border-radius: 10px; 	
+	background-color: white;  	
+	vertical-align: middle; 	
+	empty-cells: hide}
+
+/*GRID-------------------------------------------------------------- */
+
+.digitalkomix_grid table {
+	border-top: 3px solid black;
+	border-bottom: 3px solid black;
+	border-right: 3px solid black;
+	border-left: 3px solid black; 
+	color: #0074a2;  
+	font-size: 12px;  
+	background-size: 100% 100%; 
+}
+.digitalkomix_grid td {
+	border-top: 1px solid #0074a2;
+	border-bottom: 1px solid #0074a2;
+	border-right: 1px solid #0074a2;
+	border-left: 1px solid #0074a2; 
+}

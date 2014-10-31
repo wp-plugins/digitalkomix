@@ -14,9 +14,15 @@ This plugin adds balloons to traditional comic frames. Balloons become part of t
 
 This plugin adds balloons to traditional comic frames. Balloons become part of the content of the post, and can be translated. 
 Image becomes an HTML &lt;table&gt; background, while balloons are cells of that &lt;table&gt;.
-At this stage plugin works through a shortcode, that can be enclosing: [digkom]&lt;IMAGE&gt;[/digkom]
+At this stage plugin works through a shortcode, that can be automatically built in a settings page found in the "Media" menu
+of the Dashboard. Shortcode Builder displays actual shortcode (that can be cut and pasted either in a post or a page), a preview
+of the image with the balloons, and a view of the grid overlying the image. All settings can be edited in the settings fields below
+these previews, including image information, dimension of the overlying grid and texts inside the balloons with their position and 
+dimension. Shortcode builder enables only 4 balloons, but you can add more manually editing the pasted shortcode.
 
-or self-closing: [digkom]
+Generally speaking, shortcode can be enclosing: [digkom]&lt;IMAGE&gt;[/digkom]
+
+or self-closing: [digkom] (shortcode builder generates this kind).
 
 Enclosing shortcode handles the image directly added from the Media Library, while in the self-closing shortcode 
 you will have to add image location and size. Below is a list of the shortcode attributes:
@@ -71,8 +77,13 @@ It has been tested on twentythirteen and twentyfourteen.
 1. This is how the overlying grid appears on the frame.
 2. Choose top-left and bottom-right corner of the balloon. 
 3. This is how the balloon appears once the text is added.
+4. Shortcode Builder settings page. On top actual display, below preview of the comic frame and the grid.
+5. Shortcode Builder settings page. Image info, grid size and text setting fields.
 
 == Changelog ==
+
+= 1.3 =
+* Shortcode Builder settings page added to automatically generate shortcode to be cut and pasted in the post or page.
 
 = 1.2 =
 * Grid mode added: no limits to table size, balloon is positioned and sized defining the cells of it's top-left and bottom-right corner.
@@ -85,6 +96,9 @@ useful to choose appropriate number of rows x cols.
 * First release.
 
 == Upgrade Notice ==
+
+= 1.3 =
+* Shortcode Builder settings page added.
 
 = 1.2 =
 * Grid mode added.

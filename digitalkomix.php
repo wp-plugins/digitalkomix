@@ -3,7 +3,7 @@
 Plugin Name: digitalkOmiX
 Plugin URI: http://www.andywar.net/wordpress-plugins/digitalkomix-plugin
 Description: Creates a shortcode that displays balloons with text on an image.
-Version: 1.2
+Version: 1.3
 Author: Andy War
 Author URI: http://www.andywar.net
 License: GPLv2
@@ -25,6 +25,43 @@ License: GPLv2
     along with this program; if not, write to the Free Software
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
+
+/*
+ * ACTIVATION
+ */
+
+// Call function when plugin is activated
+register_activation_hook( __FILE__, 'digitalkomix_install' );
+
+function digitalkomix_install() {
+	$placeholder_url = plugins_url('digitalkomix/images/placeholder.jpg' , '__FILE__');//sets url for placeholder
+	//setup default option values
+	$digkom_opt_arr = array(
+			'image_url' => $placeholder_url,
+			'image_link' => $placeholder_url,
+			'width' => 400,
+			'height' => 600,
+			'rows' => 4,
+			'cols' => 3,
+			'text_1' => 'Hello World!',
+			'text_1_f' => 1,
+			'text_1_s' => 5
+	);
+
+	//save our default option values
+	update_option( 'digkom_option_name', $digkom_opt_arr );
+
+}
+
+/*
+ * SETTINGS
+ */
+
+require_once 'digkom_settings_page.php';
+
+/*      
+ * SHORTCODE
+ */
 
 add_action('wp_head', 'style_in_head');//add stiles in head of page
 
