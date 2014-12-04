@@ -294,8 +294,8 @@ class digkomSettingsPage
     public function grid_callback()
     {
     	printf(
-    	'<hr><input type="text" id="grid" name="digkom_option_name[rows]" size="3" value="%s" />'.__('Rows', 'digitalkomix').'&nbsp;&nbsp;&nbsp;
-        <input type="text" name="digkom_option_name[cols]" size="3" value="%s" />'.__('Columns (px)', 'digitalkomix'),
+    	'<input type="text" id="grid" name="digkom_option_name[rows]" size="3" value="%s" />'.__('Rows', 'digitalkomix').'&nbsp;&nbsp;&nbsp;
+        <input type="text" name="digkom_option_name[cols]" size="3" value="%s" />'.__('Columns', 'digitalkomix'),
     	isset( $this->options['rows'] ) ? esc_attr( $this->options['rows']) : '',
     	isset( $this->options['cols'] ) ? esc_attr( $this->options['cols']) : ''
     			);
@@ -304,7 +304,7 @@ class digkomSettingsPage
     public function text_1_callback()
     {
     	printf(
-    	'<hr><input type="text" id="text_1" name="digkom_option_name[text_1]" value="%s" />'.__('Text', 'digitalkomix').'&nbsp;&nbsp;&nbsp;
+    	'<input type="text" id="text_1" name="digkom_option_name[text_1]" value="%s" />'.__('Text', 'digitalkomix').'&nbsp;&nbsp;&nbsp;
 		<input type="text" name="digkom_option_name[text_1_f]" size="3" value="%s" />'.__('Starting Cell', 'digitalkomix').'&nbsp;&nbsp;&nbsp;		
 		<input type="text" name="digkom_option_name[text_1_s]" size="3" value="%s" />'.__('Ending Cell', 'digitalkomix'),
     	isset( $this->options['text_1'] ) ? esc_attr( $this->options['text_1']) : '',

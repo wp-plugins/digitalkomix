@@ -3,8 +3,8 @@ Contributors: andywar65
 Donate link: http://www.andywar.net/wordpress-plugins/donate
 Tags: image, text, comics, balloons, shortcode
 Requires at least: 4.0
-Tested up to: 4.0
-Stable tag: 1.3
+Tested up to: 4.0.1
+Stable tag: 1.3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -77,10 +77,13 @@ It has been tested on twentythirteen and twentyfourteen.
 1. This is how the overlying grid appears on the frame.
 2. Choose top-left and bottom-right corner of the balloon. 
 3. This is how the balloon appears once the text is added.
-4. Shortcode Builder settings page. On top actual display, below preview of the comic frame and the grid.
+4. Shortcode Builder settings page. On top actual shortcode, below preview of the comic frame and the grid.
 5. Shortcode Builder settings page. Image info, grid size and text setting fields.
 
 == Changelog ==
+
+= 1.3.1 =
+* Internationalization with Italian translation.
 
 = 1.3 =
 * Shortcode Builder settings page added to automatically generate shortcode to be cut and pasted in the post or page.
@@ -96,6 +99,9 @@ useful to choose appropriate number of rows x cols.
 * First release.
 
 == Upgrade Notice ==
+
+= 1.3.1 =
+* Internationalization with Italian translation.
 
 = 1.3 =
 * Shortcode Builder settings page added.
