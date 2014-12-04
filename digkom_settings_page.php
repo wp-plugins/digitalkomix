@@ -60,7 +60,7 @@ class digkomSettingsPage
         // This page will be under "media"
         add_media_page(
             'Settings Admin', 
-            'digitalkOmiX Shortcode', 
+            __('digitalkOmiX Shortcode', 'digitalkomix'), 
             'manage_options', 
             'digkom-settings-page', 
             array( $this, 'create_admin_page' )
@@ -80,15 +80,15 @@ class digkomSettingsPage
         
             <?php $this->digkom_control_options();?>
             
-            <h2>digitalkOmiX Shortcode Builder</h2>
-            <hr><p>Actual Shortcode (cut and paste into POST/PAGE):</p>
+            <h2><?php _e('digitalkOmiX Shortcode Builder', 'digitalkomix'); ?></h2>
+            <hr><p><?php _e('Actual Shortcode (cut and paste into POST/PAGE):', 'digitalkomix'); ?></p>
             
             <?php  $this->digkom_generate_shortcode(); ?>  
             
             <p><strong><?php echo $this->class_generated_shortcode; ?></p></strong> 
 
             <form method="post" action="options.php">
-            <hr><p>Actual Image and Grid (Half Size):</p>
+            <hr><p><?php _e('Actual Image and Grid (Half Size):', 'digitalkomix'); ?></p>
             
             <?php $this->digkom_generate_table() ?>
             
@@ -113,7 +113,7 @@ class digkomSettingsPage
                 // This prints out all hidden setting fields
                 settings_fields( 'digkom_option_group' );   
                 do_settings_sections( 'digkom-settings-page' );
-                submit_button('Generate Shortcode'); 
+                submit_button(__('Generate Shortcode', 'digitalkomix')); 
             ?>
             </form>
         </div>
@@ -133,14 +133,14 @@ class digkomSettingsPage
 
         add_settings_section(
             'setting_section_id', // ID
-            'Custom Shortcode Settings', // Title
+            __('Custom Shortcode Settings', 'digitalkomix'), // Title
             array( $this, 'print_section_info' ), // Callback
             'digkom-settings-page' // Page
-        );    
-
+        ); 
+           
         add_settings_field(
         'url', // ID
-        'Image URL', // Title
+        __('Image URL', 'digitalkomix'), // Title
         array( $this, 'url_callback' ), // Callback
         'digkom-settings-page', // Page
         'setting_section_id' // Section
@@ -148,7 +148,7 @@ class digkomSettingsPage
         
         add_settings_field(
         'link',
-        'Image Link',
+        __('Image Link', 'digitalkomix'),
         array( $this, 'link_callback' ),
         'digkom-settings-page',
         'setting_section_id'
@@ -156,7 +156,7 @@ class digkomSettingsPage
         
         add_settings_field(
         'size',
-        'Image Size',
+        __('Image Size', 'digitalkomix'),
         array( $this, 'size_callback' ),
         'digkom-settings-page',
         'setting_section_id'
@@ -164,7 +164,7 @@ class digkomSettingsPage
         
         add_settings_field(
         'grid',
-        'Grid Size',
+        __('Grid Size', 'digitalkomix'),
         array( $this, 'grid_callback' ),
         'digkom-settings-page',
         'setting_section_id'
@@ -172,7 +172,7 @@ class digkomSettingsPage
         
         add_settings_field(
         'text_1',
-        'Balloon #1',
+        __('Balloon ', 'digitalkomix').'#1',
         array( $this, 'text_1_callback' ),
         'digkom-settings-page',
         'setting_section_id'
@@ -180,7 +180,7 @@ class digkomSettingsPage
         
         add_settings_field(
         'text_2',
-        'Balloon #2',
+        __('Balloon ', 'digitalkomix').'#2', 
         array( $this, 'text_2_callback' ),
         'digkom-settings-page',
         'setting_section_id'
@@ -188,7 +188,7 @@ class digkomSettingsPage
         
         add_settings_field(
         'text_3',
-        'Balloon #3',
+        __('Balloon ', 'digitalkomix').'#3', 
         array( $this, 'text_3_callback' ),
         'digkom-settings-page',
         'setting_section_id'
@@ -196,7 +196,7 @@ class digkomSettingsPage
         
         add_settings_field(
         'text_4',
-        'Balloon #4',
+        __('Balloon ', 'digitalkomix').'#4',
         array( $this, 'text_4_callback' ),
         'digkom-settings-page',
         'setting_section_id'
@@ -204,7 +204,7 @@ class digkomSettingsPage
         
         add_settings_field(
         'caption',
-        'Caption',
+        __('Caption', 'digitalkomix'),
         array( $this, 'caption_callback' ),
         'digkom-settings-page',
         'setting_section_id'
@@ -257,7 +257,7 @@ class digkomSettingsPage
      */
     public function print_section_info()
     {
-        print 'Enter your settings below:';
+        print __('Enter your settings below:', 'digitalkomix');
     }
 
     /** 
@@ -276,7 +276,7 @@ class digkomSettingsPage
     public function link_callback()
     {
     	printf(
-    	'<input type="text" id="link" name="digkom_option_name[image_link]" value="%s" />(Same as URL if left blank)',
+    	'<input type="text" id="link" name="digkom_option_name[image_link]" value="%s" />'.__('(Same as URL if left blank)', 'digitalkomix'),
     	isset( $this->options['image_link'] ) ? esc_attr( $this->options['image_link']) : ''
     			);
     }
@@ -284,8 +284,8 @@ class digkomSettingsPage
     public function size_callback()
     {
     	printf(
-    	'<input type="text" id="size" name="digkom_option_name[width]" size="5" value="%s" />Width (px)&nbsp;&nbsp;&nbsp;
-	    <input type="text" name="digkom_option_name[height]" size="5" value="%s" />Height (px)',
+    	'<input type="text" id="size" name="digkom_option_name[width]" size="5" value="%s" />'.__('Width (px)', 'digitalkomix').'&nbsp;&nbsp;&nbsp;
+	    <input type="text" name="digkom_option_name[height]" size="5" value="%s" />'.__('Height (px)', 'digitalkomix') ,
     	isset( $this->options['width'] ) ? esc_attr( $this->options['width']) : '',
     	isset( $this->options['height'] ) ? esc_attr( $this->options['height']) : ''
     			);
@@ -294,8 +294,8 @@ class digkomSettingsPage
     public function grid_callback()
     {
     	printf(
-    	'<input type="text" id="grid" name="digkom_option_name[rows]" size="3" value="%s" />Rows&nbsp;&nbsp;&nbsp;
-        <input type="text" name="digkom_option_name[cols]" size="3" value="%s" />Columns',
+    	'<hr><input type="text" id="grid" name="digkom_option_name[rows]" size="3" value="%s" />'.__('Rows', 'digitalkomix').'&nbsp;&nbsp;&nbsp;
+        <input type="text" name="digkom_option_name[cols]" size="3" value="%s" />'.__('Columns (px)', 'digitalkomix'),
     	isset( $this->options['rows'] ) ? esc_attr( $this->options['rows']) : '',
     	isset( $this->options['cols'] ) ? esc_attr( $this->options['cols']) : ''
     			);
@@ -304,9 +304,9 @@ class digkomSettingsPage
     public function text_1_callback()
     {
     	printf(
-    	'<input type="text" id="text_1" name="digkom_option_name[text_1]" value="%s" />Text&nbsp;&nbsp;&nbsp;
-		<input type="text" name="digkom_option_name[text_1_f]" size="3" value="%s" />Starting Cell&nbsp;&nbsp;&nbsp;		
-		<input type="text" name="digkom_option_name[text_1_s]" size="3" value="%s" />Ending Cell',
+    	'<hr><input type="text" id="text_1" name="digkom_option_name[text_1]" value="%s" />'.__('Text', 'digitalkomix').'&nbsp;&nbsp;&nbsp;
+		<input type="text" name="digkom_option_name[text_1_f]" size="3" value="%s" />'.__('Starting Cell', 'digitalkomix').'&nbsp;&nbsp;&nbsp;		
+		<input type="text" name="digkom_option_name[text_1_s]" size="3" value="%s" />'.__('Ending Cell', 'digitalkomix'),
     	isset( $this->options['text_1'] ) ? esc_attr( $this->options['text_1']) : '',
     	isset( $this->options['text_1_f'] ) ? esc_attr( $this->options['text_1_f']) : '',
     	isset( $this->options['text_1_s'] ) ? esc_attr( $this->options['text_1_s']) : ''
@@ -316,9 +316,9 @@ class digkomSettingsPage
     public function text_2_callback()
     {
     	printf(
-    	'<input type="text" id="text_1" name="digkom_option_name[text_2]" value="%s" />Text&nbsp;&nbsp;&nbsp;
-		<input type="text" name="digkom_option_name[text_2_f]" size="3" value="%s" />Starting Cell&nbsp;&nbsp;&nbsp;
-		<input type="text" name="digkom_option_name[text_2_s]" size="3" value="%s" />Ending Cell',
+    	'<input type="text" id="text_1" name="digkom_option_name[text_2]" value="%s" />'.__('Text', 'digitalkomix').'&nbsp;&nbsp;&nbsp;
+		<input type="text" name="digkom_option_name[text_2_f]" size="3" value="%s" />'.__('Starting Cell', 'digitalkomix').'&nbsp;&nbsp;&nbsp;
+		<input type="text" name="digkom_option_name[text_2_s]" size="3" value="%s" />'.__('Ending Cell', 'digitalkomix'),
     		isset( $this->options['text_2'] ) ? esc_attr( $this->options['text_2']) : '',
     		isset( $this->options['text_2_f'] ) ? esc_attr( $this->options['text_2_f']) : '',
     		isset( $this->options['text_2_s'] ) ? esc_attr( $this->options['text_2_s']) : ''
@@ -328,9 +328,9 @@ class digkomSettingsPage
     public function text_3_callback()
     {
     	printf(
-    	'<input type="text" id="text_3" name="digkom_option_name[text_3]" value="%s" />Text&nbsp;&nbsp;&nbsp;
-		<input type="text" name="digkom_option_name[text_3_f]" size="3" value="%s" />Starting Cell&nbsp;&nbsp;&nbsp;
-		<input type="text" name="digkom_option_name[text_3_s]" size="3" value="%s" />Ending Cell',
+    	'<input type="text" id="text_3" name="digkom_option_name[text_3]" value="%s" />'.__('Text', 'digitalkomix').'&nbsp;&nbsp;&nbsp;
+		<input type="text" name="digkom_option_name[text_3_f]" size="3" value="%s" />'.__('Starting Cell', 'digitalkomix').'&nbsp;&nbsp;&nbsp;
+		<input type="text" name="digkom_option_name[text_3_s]" size="3" value="%s" />'.__('Ending Cell', 'digitalkomix'),
     		isset( $this->options['text_3'] ) ? esc_attr( $this->options['text_3']) : '',
     		isset( $this->options['text_3_f'] ) ? esc_attr( $this->options['text_3_f']) : '',
     		isset( $this->options['text_3_s'] ) ? esc_attr( $this->options['text_3_s']) : ''
@@ -340,9 +340,9 @@ class digkomSettingsPage
     public function text_4_callback()
     {
     	printf(
-    	'<input type="text" id="text_4" name="digkom_option_name[text_4]" value="%s" />Text&nbsp;&nbsp;&nbsp;
-		<input type="text" name="digkom_option_name[text_4_f]" size="3" value="%s" />Starting Cell&nbsp;&nbsp;&nbsp;
-		<input type="text" name="digkom_option_name[text_4_s]" size="3" value="%s" />Ending Cell',
+    	'<input type="text" id="text_4" name="digkom_option_name[text_4]" value="%s" />'.__('Text', 'digitalkomix').'&nbsp;&nbsp;&nbsp;
+		<input type="text" name="digkom_option_name[text_4_f]" size="3" value="%s" />'.__('Starting Cell', 'digitalkomix').'&nbsp;&nbsp;&nbsp;
+		<input type="text" name="digkom_option_name[text_4_s]" size="3" value="%s" />'.__('Ending Cell', 'digitalkomix'),
     		isset( $this->options['text_4'] ) ? esc_attr( $this->options['text_4']) : '',
     		isset( $this->options['text_4_f'] ) ? esc_attr( $this->options['text_4_f']) : '',
     		isset( $this->options['text_4_s'] ) ? esc_attr( $this->options['text_4_s']) : ''
@@ -352,15 +352,15 @@ class digkomSettingsPage
     public function caption_callback()
     {
     	printf(
-    	'<input type="text" id="caption" name="digkom_option_name[caption]" value="%s" />Text&nbsp;&nbsp;&nbsp;' ,
+    	'<input type="text" id="caption" name="digkom_option_name[caption]" value="%s" />'.__('Text', 'digitalkomix').'&nbsp;&nbsp;&nbsp;' ,
     		isset( $this->options['caption'] ) ? esc_attr( $this->options['caption']) : ''
     				);
     	if ($this->options['cap_b'] == 0){
-    		echo '<input type="radio" name="digkom_option_name[cap_b]" value="1"/>Bottom&nbsp;&nbsp;&nbsp;
-    		<input type="radio" name="digkom_option_name[cap_b]" value="0" checked="checked" />Top';
+    		echo '<input type="radio" name="digkom_option_name[cap_b]" value="1"/>'.__('Bottom', 'digitalkomix').'&nbsp;&nbsp;&nbsp;
+    		<input type="radio" name="digkom_option_name[cap_b]" value="0" checked="checked" />'.__('Top', 'digitalkomix');
     	} else {
-    		echo '<input type="radio" name="digkom_option_name[cap_b]" value="1" checked="checked"/>Bottom&nbsp;&nbsp;&nbsp;
-    		<input type="radio" name="digkom_option_name[cap_b]" value="0" />Top';
+    		echo '<input type="radio" name="digkom_option_name[cap_b]" value="1" checked="checked"/>'.__('Bottom', 'digitalkomix').'&nbsp;&nbsp;&nbsp;
+    		<input type="radio" name="digkom_option_name[cap_b]" value="0" />'.__('Top', 'digitalkomix');
     	}	
     }
     

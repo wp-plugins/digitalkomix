@@ -27,7 +27,7 @@ License: GPLv2
 */
 
 /*
- * ACTIVATION
+ * ACTIVATION, TRANSLATION PATH REQUIRED
  */
 
 // Call function when plugin is activated
@@ -36,6 +36,7 @@ register_activation_hook( __FILE__, 'digitalkomix_install' );
 function digitalkomix_install() {
 	$placeholder_url = plugins_url('digitalkomix/images/placeholder.jpg' , '__FILE__');//sets url for placeholder
 	//setup default option values
+	
 	$digkom_opt_arr = array(
 			'image_url' => $placeholder_url,
 			'image_link' => $placeholder_url,
@@ -43,7 +44,7 @@ function digitalkomix_install() {
 			'height' => 600,
 			'rows' => 4,
 			'cols' => 3,
-			'text_1' => 'Hello World!',
+			'text_1' => 'digital kOmiX!',
 			'text_1_f' => 1,
 			'text_1_s' => 5
 	);
@@ -51,6 +52,16 @@ function digitalkomix_install() {
 	//save our default option values
 	update_option( 'digkom_option_name', $digkom_opt_arr );
 
+}
+
+/*
+ * INTERNATIONALIZATION
+*/
+
+add_action ( 'plugins_loaded' , 'digkom_init');
+function digkom_init(){
+	load_plugin_textdomain( 'digitalkomix', false, dirname( plugin_basename(__FILE__) ).'/languages/');
+	//load_plugin_textdomain( 'jetpack', false, dirname( plugin_basename( JETPACK__PLUGIN_FILE ) ) . '/languages/' );
 }
 
 /*
@@ -177,7 +188,7 @@ function digitalkomix_shortcode($atts, $content=null){
 	switch ($grid_on){
 		case '0'://texts are on, old span mode active
 			if ($rows * $cols > 12){//Control if cells are more than 12 (valid only when using span function)
-			$caption = 'WARNING! Rows x Cols > 12!';
+			$caption = 'WARNING! Rows x Cols > 12!';//TRANSLATION REQUIRED
 			$rows='4';
 			$cols='3';
 			}
@@ -309,8 +320,9 @@ function digitalkomix_shortcode($atts, $content=null){
 	}
 	
 	//output of comic frame (good for all modes)
+	$link_to_image = __('Click to view original image.', 'digitalkomix');
 	return'<div class="digitalkomix_'.$css_class_var.'">
-			<a href="'.$image_link.'" title="Click to view original image.">
+			<a href="'.$image_link.'" title="'.$link_to_image.'">
 			<table style="width: '.$width.'px; height:'.$height.'px; background-image: url('.$image_url.')">
 			<caption'.$cap_b.$caption.'</caption>'
 			.$table.
