@@ -3,7 +3,7 @@
 Plugin Name: digitalkOmiX
 Plugin URI: http://www.andywar.net/wordpress-plugins/digitalkomix-plugin
 Description: Creates a shortcode that displays balloons with text on an image.
-Version: 1.3.1
+Version: 1.3.2
 Author: Andy War
 Author URI: http://www.andywar.net
 License: GPLv2

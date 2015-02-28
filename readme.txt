@@ -4,7 +4,7 @@ Donate link: http://www.andywar.net/wordpress-plugins/donate
 Tags: image, text, comics, balloons, shortcode
 Requires at least: 4.0
 Tested up to: 4.1
-Stable tag: 1.3.1
+Stable tag: 1.3.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -81,6 +81,9 @@ It has been tested on twentythirteen and twentyfourteen.
 5. Shortcode Builder settings page. Image info, grid size and text setting fields.
 
 == Changelog ==
+
+= 1.3.2 =
+* Internationalization with Serbian translation thanks to Ogi Djuraskovic.
 
 = 1.3.1 =
 * Internationalization with Italian translation.
